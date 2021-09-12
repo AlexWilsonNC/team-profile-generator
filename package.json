@@ -1,0 +1,23 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "Application that takes in info about employees from node.js prompts, generated into an HTML page.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexWilsonNC/team-profile-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexWilsonNC/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/AlexWilsonNC/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  }
+}

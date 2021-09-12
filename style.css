@@ -1,0 +1,65 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+#main-header {
+    width: 100%;
+    line-height: 80px;
+    background-color: rgb(73, 73, 112);
+    color: white;
+    border-bottom: 2px solid black;
+}
+
+header h1 {
+    margin-left: 25px;
+}
+
+body {
+    background: url(assets/teamwork.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+}
+
+#container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.box {
+    width: 260px;
+    height: 315px;
+    background-color: rgba(146, 140, 189, 0.6);
+    margin: 50px 25px 0px 25px;
+    border-radius: 10px;
+    border: 1.6px solid black;
+    box-shadow: 10px 10px 25px 5px rgb(114, 114, 114);
+}
+
+.box-header {
+    line-height: 50px;
+    margin-left: 15px;
+    height: 35%;
+}
+
+.box ul {
+    height: 65%;
+    width: 220px;
+    height: 170px;
+    background-color: rgb(231, 231, 231);
+    margin: auto;
+    border: 2px solid rgb(56, 56, 94);
+    border-radius: 2px;
+}
+
+li {
+    height: 20%;
+    margin: 20px 0px 0px 20px;
+}
