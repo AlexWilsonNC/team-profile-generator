@@ -1,8 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-// const anotherEmployee = [], // at top
-
 const createHTML = (html) => {
     fs.writeFile('new.html', (html), (error) => {
         if (error) console.log(error);
@@ -44,12 +42,13 @@ const renderHeader = (employeeName, position) => {
 const renderInfo = (employeeId, email, usernameGithub) => {
     return `<ul>
         <li class="employee-id">ID: ${employeeId}</li><hr>
-        <li class="email">${email}</li><hr>
+        <li class="email"><a href="mailto:${email}">email</li><hr>
         <li class="github-user">Github: <a href="https://github.com/${usernameGithub}" target="_">${usernameGithub}</a></li>
     </ul>`
 };
 
-const employeeQuestions = inquirer.prompt([
+const employeeQuestions = () => {
+ inquirer.prompt([
     {
         name: 'employeeName',
         type: 'input',
@@ -81,12 +80,7 @@ const employeeQuestions = inquirer.prompt([
         message: 'What is their Github username?',
         validate: (input) => !!input
     },
-    // {
-    //     name: 'yesOrNo',
-    //     type: 'rawlist',
-    //     message: 'Add another employee?',
-    //     choices: ['Yes', 'No']
-    // }
+
 ]).then(({ employeeName, position, employeeId, email, usernameGithub }) => {
 
     const anotherEmployee = () => {
@@ -100,16 +94,13 @@ const employeeQuestions = inquirer.prompt([
     ]
 
     inquirer.prompt(againQuestion).then((answers) => {
-        if (answers.another == 'yes') {
-            init();
+        console.log(answers.yesOrNo)
+        if (answers.yesOrNo == 'yes') {
+            employeeQuestions();
         } else {
             process.exit();
         }
     })
-
-    function init() {
-        employeeQuestions();
-    }
 };
 
     const createMainHeader = renderHeader(employeeName, position);
@@ -120,4 +111,6 @@ const employeeQuestions = inquirer.prompt([
         createList, 
         );
         createHTML(createPage);
-});
+})};
+
+employeeQuestions();
