@@ -1,6 +1,8 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
+// const anotherEmployee = [], // at top
+
 const createHTML = (html) => {
     fs.writeFile('new.html', (html), (error) => {
         if (error) console.log(error);
@@ -47,7 +49,7 @@ const renderInfo = (employeeId, email, usernameGithub) => {
     </ul>`
 };
 
-inquirer.prompt([
+const employeeQuestions = inquirer.prompt([
     {
         name: 'employeeName',
         type: 'input',
@@ -69,7 +71,7 @@ inquirer.prompt([
     },
     {
         name: 'email',
-        type: 'input',
+        type: 'input', // add default email app functionality
         message: 'What is their email?',
         validate: (input) => !!input
     },
@@ -79,22 +81,40 @@ inquirer.prompt([
         message: 'What is their Github username?',
         validate: (input) => !!input
     },
+    // {
+    //     name: 'yesOrNo',
+    //     type: 'rawlist',
+    //     message: 'Add another employee?',
+    //     choices: ['Yes', 'No']
+    // }
 ]).then(({ employeeName, position, employeeId, email, usernameGithub }) => {
-    let positionIcon // icon in front of position
-    if (position.includes('Manager')) {
-        positionIcon = '' // pull in img
-    } if (position.includes('Senior Dev')) {
-        positionIcon = ''
-    } if (position.includes('Backend Dev')) {
-        positionIcon = ''
-    } if (position.includes('Frontend Dev')) {
-        positionIcon = ''
-    } if (position.includes('Intern')) {
-        positionIcon = ''
-    };
+
+    const anotherEmployee = () => {
+        const againQuestion = [
+        {
+            name: 'yesOrNo',
+            type: 'rawlist',
+            message: 'Add another employee?',
+            choices: ['yes', 'no'] 
+        }
+    ]
+
+    inquirer.prompt(againQuestion).then((answers) => {
+        if (answers.another == 'yes') {
+            init();
+        } else {
+            process.exit();
+        }
+    })
+
+    function init() {
+        employeeQuestions();
+    }
+};
 
     const createMainHeader = renderHeader(employeeName, position);
     const createList = renderInfo(employeeId, email, usernameGithub);
+    anotherEmployee();
     const createPage = renderBaseHTML(
         createMainHeader, 
         createList, 
